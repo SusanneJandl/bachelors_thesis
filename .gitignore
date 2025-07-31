@@ -1,0 +1,13 @@
+# maybe we do NOT add the (often changing) binary to the git repo
+thesis.pdf
+expose.pdf
+ 
+.DS_Store
+TODO*
+LINK-TO*
+*.webloc
+*.tmp
+*.bak
+
+chapters/*.pdf
+lib.pdf
