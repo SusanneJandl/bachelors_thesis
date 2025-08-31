@@ -33,18 +33,20 @@ The choice was made by comparing output, size and speed of different models.
 In a first step the extracted text is cut into chunks that are then transformed into vectors.
 The chunk size and other parameters  help to manipulate the output. This example refers to the use of hnswlib package:
 
-- chunk size:\\
-        Number of characters in a chunk that will then become a vector
-- overlap:\\
-        Number of characters that are in the previous chunk as well.\\
-        Example: chunk size = 100, overlap = 20\\
-        First chunk includes character 0-99, second chunk includes character 80-179
-- M:\\
-        can be a value from 12-48 and represents the maximum number of edges per node.\\
-        higher M means more accuracy but needs more hardware resources
-- ef:\\
-        Controls the size of the dynamic list of candidates during the search process.\\
-        higher ef means more accuracy but needs more hardware resources
+- chunk size:
+  - Number of characters in a chunk that will then become a vector
+- overlap:
+  - Number of characters that are in the previous chunk as well.
+    #linebreak()
+    Example: chunk size = 100, overlap = 20
+    #linebreak()
+    First chunk includes character 0-99, second chunk includes character 80-179
+- M:
+  - can be a value from 12-48 and represents the maximum number of edges per node.
+  - higher M means more accuracy but needs more hardware resources
+- ef:
+  - Controls the size of the dynamic list of candidates during the search process.
+  - higher ef means more accuracy but needs more hardware resources
 
 
 
@@ -52,7 +54,7 @@ The chunk size and other parameters  help to manipulate the output. This example
 
 Caused by the fact that the use of Python.Included in C\# did not work so well, the choice was to set up a flask API with functions to trigger the chatbot and retrieve the relevant context from the vector store based on the query.
 
-The flask API has two endpoints:\\
+The flask API has two endpoints:
 
 - /startbot
   - is called by the sample app that sends the topic in a post request
@@ -115,11 +117,11 @@ Sometimes there is a mixture of English and German in the output and some gramma
 === Tools and models
 ==== Ollama
 
-helps to manage large language models and provides a models, a chat and an embedding endpoint in an API that runs on localhost.
+Ollama helps to manage large language models and provides a models, a chat and an embedding endpoint in an API that runs on localhost.
 It is available for Windows, Linux and MacOS.
 Ollama improves the usage of hardware by detecting gpu if available and carrying out tasks on available resources.
 It supports the upload and download of LLMs and includes a simple console chat function.
 
 The usage of Ollama is quite simple.
 It has to be downloaded and installed.
-To activate it is necessary to open a terminal and enter the command ''ollama serve''.
+To activate it is necessary to open a terminal and enter the command "ollama serve".

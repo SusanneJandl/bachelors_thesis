@@ -1,32 +1,35 @@
 Viele Websites bieten heutzutage Chatbot-Funktionen zur Unterstützung der Kunden an.  
-Zahlreiche vorgefertigte Lösungen stehen zur Implementierung zur Verfügung, erfordern jedoch in der Regel Internetzugang.  
-Falls keine dieser Lösungen passend ist, kann ein eigener Chatbot mit kostenpflichtigen Diensten, wie der OpenAI API oder der Huggingface Inference API mit wenig Aufwand erstellt werden.
-#linebreak()  
+Mit kostenpflichtigen Online-APIs wie der OpenAI API oder der Huggingface Inference API ist es einfach, einen individuellen Chatbot zu erstellen.
+Es kann jedoch Situationen geben, in denen ein Chatbot oder Assistent lokal ausgeführt werden soll.
+Der häufigste Grund dafür ist, dass die Daten das lokale Netzwerk nicht verlassen dürfen - zum Beispiel beim Umgang mit sensiblen Informationen.
+Für diesen Fall können KI-Modelle auf lokaler Hardware ausgeführt werden, jedoch muss die Hardware leistungsfähig genug sein, um die Modelle auszuführen.
 #linebreak()
-Aber wie kann Kunden die Nutzung eines Chatbots ermöglicht werden, wenn es sich um eine lokale Anwendung ohne Internetzugang handelt?
-Hier beginnt das in der Bachelorarbeit beschriebene Projekt:
-#linebreak()  
+Doch wie kann Kunden bei begrenzten Hardware-Ressourcen dennoch der Nutzen eines Chatbots auf einem lokalen Gerät geboten werden?
+An diesem Punkt setzt das Projekt dieser Bachelorarbeit an:
+#linebreak()
+#linebreak()
 Für eine Software, die lokal ohne Internetverbindung läuft, musste ein Chatbot entwickelt werden.  
 Die Hardware hatte begrenzten Ressourcen, und der Chatbot musste so gestaltet werden, dass er unter den gegebenen Bedingungen funktioniert.  
 #linebreak()  
-Das Zielgerät ist ein Windows-PC mit 8 GB RAM und einer CPU mit 4 Kernen.
+Das Zielgerät ist ein Windows-PC mit nur 8 GB RAM und der Chatbot muss die Hardware-Ressourcen natürlich mit anderen Anwendungen und dem Betriebssystem teilen.
 Eine weitere Herausforderung besteht darin, dass der Chatbot sowohl auf Englisch als auch auf Deutsch antworten muss.
 #linebreak()  
 Um das Ziel zu erreichen, wurden mehrere Ansätze getestet.  
 Die erste Idee, ein vortrainiertes Large Language Model (LLM) mit den erforderlichen Informationen für den Chatbot zu fine-tunen, brachte kein akzeptables Ergebnis.  
-Nach Versuchen mit einigen anderen Möglichkeiten, die in dieser Arbeit erwähnt werden, wurde schließlich eine endgültige Lösung gefunden.  
-Diese umfasste die Verwendung von RAG (Retrieval-Augmented Generation), bei der die produktspezifischen Informationen für den Chatbot in einem Vector Store gespeichert wird, sowie die Nutzung von Ollama. Ollama ist ein Tool, das Large Language Models verwaltet.  
+Nach einer Reihe von Experimenten mit RAG (Retrieval-Augmented Generation), bei dem die produktspezifischen Informationen für den Chatbot in einem Vektor-Store gespeichert werden, wurde eine funktionierende Lösung gefunden.
+Alle Chatbot-Ansätze verwenden Ollama, ein Tool zur Verwaltung von Large Language Models.
+Die finale Implementierung funktionierte, erfüllte jedoch nicht die Erwartungen der Nutzer an einen Chatbot.  
+Die Antwortzeit war zu lang, und die Qualität der Antworten war nicht zufriedenstellend.
+Für die Entwicklerin war es dennoch ein Erfolg, den Chatbot zum Laufen zu bringen.
 #linebreak()  
-Die Lösung funktionierte, entsprach jedoch nicht den Erwartungen der Nutzer an einen Chatbot.  
-Für den Entwickler war es zwar ein Erfolg, den Chatbot zum Laufen zu bringen, aber es dauerte bis zu einer Minute, um eine Antwort zu erhalten, und die Sprachqualität war nicht gut.  
-In der Klassifizierung der KI-Ausgabequalität wurden die Antworten des Chatbots als teilweise korrekt in Rechtschreibung und Grammatik sowie inhaltlicher Korrektheit bewertet.  
+Die verschiedenen Chatbot-Ansätze wurden getestet und verglichen, wobei der Fokus auf der Antwortzeit sowie der Qualität des Inhalts und der Sprache der Antworten lag.  
 #linebreak()  
-Zusammenfassend war das Ergebnis ein Chatbot, der Fragen beantworten konnte, dessen Antworten jedoch nicht immer korrekt waren, mit unzureichender Sprachqualität und langen Antwortzeiten.
+Zusammenfassend lässt sich sagen, dass das Ergebnis ein Chatbot war, der Fragen beantworten konnte, aber die Antworten nicht immer korrekt waren, die Qualität der Sprache war nicht zufriedenstellend und die Antwortzeit zu lang.
 #linebreak()  
-Der Chatbot wurde auch auf anderen Geräten, wie einem Windows-Laptop mit 16 GB RAM und einem MacBook mit M1-Chip getestet.
-Auf beiden Geräten funktionierte der Chatbot gut, sogar mit einem größeren LLM zur Verbesserung der Antwortqualität.
+Der Chatbot wurde auch auf einem Windows-Laptop mit 32 GB RAM getestet.
+Auf diesem Gerät funktionierte der Chatbot gut, selbst bei Verwendung eines größeren LLM, um eine bessere Antwortqualität zu erzielen.
 #linebreak()
 Der aktuellste Ansatz, auch auf dem ursprünglichen Zielgerät ein brauchbares Ergebnis zu erhalten, ist eine KI Anwendung, die KI für die Übersetzung und Retrieval verwendet.
 Dem Chatbot liegen Informationen in Form einer JSON-Datei mit englischen Fragen und vordefinierten Antworten in Deutsch und Englisch vor.
 Die Frage mit der höchsten Ähnlichkeit zur Benutzereingabe wird aus der JSON-Datei abgerufen und die entsprechende Antwort zurückgegeben.
-Das wird nur als alternative Lösung diskutiert, da keine fortlaufende Konversation möglich ist, was ein zentrales Merkmal eines Chatbots ist.
+Das wird nur als alternative Lösung vorgestellt, da keine fortlaufende Konversation möglich ist, was ein zentrales Merkmal eines Chatbots ist.

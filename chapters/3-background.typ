@@ -1,9 +1,11 @@
+#set heading(numbering: "1.")
+
 #import "global.typ": *
 
 = #titles.background <cha:background>
 // define and explain terms, add glossary
-In this chapter terms and concepts are introduced that are relevant for understanding this thesis.
-The chapter starts with a brief introduction to the key concepts and technologies used and provides information about tools, models and libraries used in the project.
+This chapter provides a theoretical foundation for understanding the technologies and approaches applied in this thesis.
+It starts with a brief introduction to the key concepts and technologies used and provides information about tools, models and libraries used in the project.
 
 == #titles.rag <sec:rag>
 
@@ -27,7 +29,7 @@ This thesis only uses text based information, but RAG systems can also use image
 First the text is split into smaller parts, called *chunks*.
 An *embedding model* is necessary to convert the chunks into vectors, that can then be stored in the vector store.
 When storing the vectorized chunks, an index is created to allow fast retrieval of the most relevant chunks for a given query.
-The embedding model converts the user query into vectors and the search engine of the vector store then finds the most relevant information.
+The embedding model converts the user query into vectors and the search engine of the vector store finds the most relevant information.
 The search result in form of vectors is then converted back into text by the embedding model.
 
 In @fig:VScreation the process of creating a vector store is visualized.
@@ -45,16 +47,14 @@ The task the text generation model has to perform, is to create an answer in pro
 It is not necessary to fine-tune the text generation model for the specific topic, as the information is provided by the vector store.
 
 A combination of using a fine-tuned model with RAG can improve the results even further but will decrease the flexibility of the system.
-When using a text generation model without specific fine-tuning on the topic, it is easy to replace the vector store and use the same system for different topics or just update information.
+When using a text generation model without specific fine-tuning on the topic, it is easy to replace the vector store and use the same system for different topics or update information.
 
 Due to the huge amount of available AI models for text generation, it can be very tricky to find the one that fits best for the specific purpose.
-In  _@subsec:textgen #titles.textgen _the models used in this thesis are introduced.
+In _@subsec:textgen #titles.textgen _ the models used in this thesis are introduced.
 
-Using RAG for chatbots brings several advantages.
-Information retrieval and text generation are separated, which results in a very flexible system.
-The information can be updated without the need to retrain the text-generation model.
-The vector store and retrieval can be used with any text-generation model.
-Fine-tuning of a pre-trained model is not necessary.
+RAG presents two main advantages over fine-tuning a pre-trained model.
+Fine-tuning requires a labeled dataset, which can be expensive to build, and a fine-tuned model is prone to outdated knowledge.
+Instead a RAG model can continuously accesses and retrieve up-to-date information. #cite(<Chaudhary:2024>)
 
 == #titles.AImodels <sec:AImodels>
 
@@ -62,86 +62,105 @@ AI models are algorithms that can learn from data and make predictions or decisi
 The most known type of AI models are Large Language Models (LLMs), which are designed to understand and generate human language.
 
 A huge variety of AI models exist, each designed for specific tasks and applications.
-Besides the mentioned LLMs, this thesis also uses embedding models, which are used to convert text into vectors.
-There is also a translation model that is part of this thesis.
-It's only purpose is to translate text from one language to another.
-It also generates text, like a text generation model, but it is not used to generate answers based on a user query.
+Besides the mentioned LLMs, the implementation for this thesis also uses embedding models, which are used to convert text into vectors.
+There is also a translation model that is part of this work.
+After a short general intorduction of the model types @subsec:thesismodels #titles.thesismodels gives relevant information about the implemented AI models.
 
 === #titles.textgen <subsec:textgen>
 
-A text generation model is a type of generative AI models which is designed to produce coherent and contextually relevant textual
-content.
-These models are typically based on natural language proc                                                                               essing (NLP) techniques and are trained in text data to learn the patterns, grammar, and context required to generate humanlike text.
-When these these models are trained in huge sets of data and have been fed enough examples to be able to recognize and interpret human language or other types of complex data, then they are called large language models (LLM) [15].
+A text generation model is a type of generative AI models which is designed to produce coherent and contextually relevant content.
+These models are typically based on natural language processing (NLP) techniques and are trained in text data to learn the patterns, grammar, and context required to generate humanlike text.
+When these models are trained in huge sets of data and have been fed enough examples to be able to recognize and interpret human language or other types of complex data, then they are called Large Language Models (LLM) #cite(<Athanasios:2024>).
 
-These are the key components and concepts of text generation models:
-• Training Data:
-‣ Corpora: Large collections of text used to train the model. These can include books, articles,
-websites, dialogues, and other text sources.
-‣ Preprocessing: Cleaning and organizing the text data, including tokenization (breaking text
-into words or subwords), removing special characters, and normalizing text.
-• Model Architecture:
-Development of an AIBased
-System for Knowledge Specific
-Assistance
-8
-MSc Thesis Apostolou Athanasios
-‣ Recurrent Neural Networks (RNNs): Earlier models for text generation, including Long ShortTerm
-Memory (LSTM) and Gated Recurrent Units (GRUs), which handle sequential data by
-maintaining context over time.
-‣ Transformers: Modern architecture that has become the standard for NLP tasks. Transformers
-use selfattention
-mechanisms to process entire sequences of text at once, allowing for
-better handling of context and dependencies over long distances in the text. Examples
-include the GPT (Generative Pretrained
-Transformer) series, BERT (Bidirectional Encoder
-Representations from Transformers), and others.
-• Training Process:
-‣ Unsupervised Learning: Most text generation models are trained using unsupervised learning,
-where the model learns to predict the next word or sequence of words based on the context
-provided by preceding text.
-‣ FineTuning:
-After pretraining
-on a large corpus, models are often finetuned
-on specific
-datasets to adapt them to particular tasks or domains.
-• Generation Techniques:
-‣ Sampling: Randomly selecting the next word from the probability distribution generated by
-the model.
-‣ Beam Search: An algorithm that searches for the best sequence of words by considering
-multiple candidate sequences at each step and selecting the most likely ones.
-‣ Temperature Adjustment: Modifying the probability distribution to control the randomness of
-the generated text. Lower temperatures result in more deterministic outputs, while higher
-temperatures produce more diverse and creative text.
-Usually the most popular LLMs have these parameters in order to control sampling. Parameter
-“top_k” limits the model's output to the topk
-most probable tokens at each step. This can
-help reduce incoherent or nonsensical output by restricting the model's vocabulary. Parameter
-“top_p” filters out tokens whose cumulative probability is less than a specified threshold (p). It
-allows for more diversity in the output while still avoiding lowprobability
-tokens. Temperature
-adjusts the randomness or confidence level of the model's predictions by scaling the log
-probabilities. Higher temperatures lead to more diverse but potentially nonsensical outputs,
-while lower temperatures yield more focused and predictable responses [16], [17].
-• Evaluation:
-‣ Perplexity: A measure of how well a probability model predicts a sample. Lower perplexity
-indicates better performance.
-‣ Human Evaluation: Assessing the coherence, relevance, and fluency of the generated text
-through human judges.
-‣ Automated Metrics: BLEU (Bilingual Evaluation Understudy), ROUGE (RecallOriented
-Understudy for Gisting Evaluation), and other metrics comparing the generated text to
-reference texts.
+=== #titles.embedding <subsec:embedding>
 
+Embedding models are a type of AI model that is designed to convert text into numerical vectors, which can be easily processed by machine learning algorithms.
+These models capture the semantic meaning of text sections, allowing for more effective information retrieval and comparison.
 
-=== #titles.modelfamilies <subsec:modelfamilies>
+=== #titles.transl <subsec:translation>
+
+Translation models are a subset of text generation models, designed to convert text from one language to another.
+These models are trained on parallel corpora, which consist of text pairs in different languages, enabling them to learn the mappings between languages.
+
+=== #titles.thesismodels <subsec:thesismodels>
+
+#figure(
+  table(
+    columns: (auto, auto, auto, auto, auto), inset: 10pt, fill: (x, y) =>
+    if y == 0 { luma(240) }, stroke: gray, align: center,
+    [*Type*], [*Name*], [*Source*], [*Size*], [*Usage*],
+    [Text Generation], [llama3.2:3b], [Ollama], [~2,00 GB],[#titles.transl (@subsec:translation) #linebreak() final, and others],
+    [Embedding], [all-minilm:22m], [Ollama], [45,00 MB],[langflow approach],
+    [Embedding], [paraphrase-multilingual-MiniLM-L12-v2], [Hugging Face], [~0,47 GB],[final],
+    [Translation], [opus-mt-de-en], [Hugging Face], [~1,02 GB],[final],
+    [Translation], [opus-mt-en-de], [Hugging Face], [~0,28 GB],[final],
+    [Text Generation], [llama3.2:3b-instruct-q8_0], [Ollama], [~3,40 GB],[validation, qunatization],
+    [Text Generation], [llama3.2:3b-instruct-q5_0], [Ollama], [~1,90 GB],[validation, qunatization],
+  ), caption: flex-caption(
+    [The table lists all AI models with basic information about source and size, as well as where they are used in this thesis.],
+    [AI Model Overview],
+  ),
+) <tab:thesismodels>
 
 == #titles.finetuning <sec:finetuning>
 
+Fine-tuning is the process of taking a pre-trained AI model—typically trained on a large, general-purpose dataset—and continuing its training on a smaller, task-specific dataset.
+Unlike training from scratch, fine-tuning starts from a model that already understands broad patterns (e.g., language structure or visual features).
+This second training phase allows the model to adjust its language understanding and generation capabilities to better suit specific topics.
+The fine-tuning process requires a huge data set and considerable computational resources.
+Compared to RAG, fine-tuning offers tighter integration and faster inference, but comes with the challenge of keeping models updated as information changes.
 
 == #titles.quantization <sec:quantization>
 
+Quantization is a model compression technique that converts an LLM from a high-precision data representation to a lower-precision data representation.
+Quantization is an important process because reducing the number of bits required for each of a model's weights adds up to a significant decrease in its overall size.
+Consequently, quantization produces LLMs that consume less memory, require less storage space, are more energy-efficient, and are faster. #cite(<Talamadupla:2024>).
+
+In this thesis the effect of qunatization will be evaluated by using Ollama with the same models with different qunatization.
+#cite(<Talamadupla:2024>, form:"prose") explains different types of qunatization.
+As Ollama uses models in GGUF format, the process used for quantization is the so called k-quant system.
+
 == #titles.huggingface <sec:huggingface>
+
+Hugging Face is a widely-used open-source platform that provides tools and infrastructure for developing, training, and deploying machine learning models.
+At its core, the platform offers a powerful Python library called transformers, which allows researchers and developers to access and apply state-of-the-art pre-trained models.
+
+The platform also serves as a comprehensive ecosystem for machine learning development.
+The Hugging Face Model Hub enables users to browse, download, and share pre-trained models across various domains.
+This collaborative model-sharing system facilitates reproducibility and accelerates experimentation, particularly in academic research and prototyping.
+In addition to models, Hugging Face provides access to thousands of datasets for model-training.
+
+For deployment and experimentation, Hugging Face offers hosted APIs and an online demo environment called Hugging Face Spaces.
+Spaces supports building and showcasing machine learning applications using various frameworks.
+
+Overall, Hugging Face significantly lowers the barrier to entry for working with advanced machine learning models by providing modular, well-documented, and community-driven tools.
+
+#cite(<Huggingface:2025>)
+
+For this thesis Hugging Face was used to download models and retrieve knowledge in general.
 
 == #titles.ollama <sec:ollama>
 
-== #titles.cloudlocal <sec:cloudlocal>
+Ollama is a command-line tool and runtime environment designed to simplify and optimize the deployment and execution of large language models (LLMs) on local machines.
+It enables users to run state-of-the-art models without relying on external APIs or cloud infrastructure.
+Ollama allows seamless access to generative AI with minimal setup, making it especially useful in environments that require privacy, offline access, or resource control.
+
+The platform provides an interface for interacting with LLMs via terminal commands or through local APIs.
+Ollama abstracts away the complexity of managing model architectures, tokenizers, and backend hardware compatibility, allowing users to focus on experimentation and application design.
+
+One of the core strengths of Ollama lies in its ability to work efficiently on consumer-grade hardware.
+It leverages techniques such as quantization and optimized inference backends to reduce memory and compute requirements, enabling models to run on laptops and edge devices.
+
+#cite(<Ollama:2025>)
+
+For all chatbot approaches in this thesis Ollama is used for text generation.
+
+== #titles.langflow <sec:langflow>
+
+Langflow is a graphical interface tool and provides a no-code or low-code interface.
+It is a front-end wrapper for the LangChain framework, which is a Python-based toolkit for building AI aplications.
+Users can connect components such as prompt templates, document retrievers, vector databases and more through the intuitive drag-and-drop interface.
+Alongside to various cloud platforms like OpenAI, Langflow supports Ollama as one of the LLM providers, that 
+enables offline use.
+
+#cite(<Langflow:2025>)
