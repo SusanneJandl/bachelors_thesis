@@ -84,6 +84,9 @@ These models are trained on parallel corpora, which consist of text pairs in dif
 
 === #titles.thesismodels <subsec:thesismodels>
 
+The following table gives an overview of the AI models used in this thesis, including their purpose and where they are used.
+As this thesis focuses on hardware limitations, the size is a critical factor in model selection and is added in the basic information.
+
 #figure(
   table(
     columns: (auto, auto, auto, auto, auto), inset: 10pt, fill: (x, y) =>

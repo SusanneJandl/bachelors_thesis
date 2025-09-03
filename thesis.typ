@@ -2,7 +2,7 @@
 // FH JOANNEUM (fhj)
 // Template for a Bachelor's and Master's thesis
 // create PDF with 'typst compile thesis.typ'
-
+// circled numbers: ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮ ⑯ ⑰ ⑱ ⑲ ⑳ #text(1.3em)[③]
 #import "chapters/global.typ": *
 
 #import "chapters/glossary-definitions.typ": gls-entries
