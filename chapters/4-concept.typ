@@ -90,22 +90,22 @@ The following approach in the next section still uses Langflow, but only for ret
 This approach includes a C\# console application.
 No graphical user interface (GUI) was implemented, as the purpose was to test the functionality first, and add a GUI if the result was successful for use in production.
 
-@fig:OllamaSharpChat shows the architecture of the chatbot with OllamaSharp and Python.Included in C\#.
+@fig:OllamaSharpChat shows the architecture of the chatbot with OllamaSharp #cite(<OllamaSharp:2025>) and Python.Included #cite(<PythonIncluded:2025>) in C\#.
 The test results of the Langflow approach showed that the time for retrieving the context from the vector store was acceptable for a first prototype.
 For retrieving the context, a new workflow was created with Langflow, and used in backend mode.
 A python script calls the workflow via API and returns the context as text.
-To integrate this into the C\# application, the Nuget package Python.Included is used.
-With Python.Included, the necessary Python environment is packaged with the application, allowing it to run without requiring a separate Python installation.
+To integrate this into the C\# application, the Nuget package Python.Included #cite(<PythonIncluded:2025>) is used.
+With Python.Included #cite(<PythonIncluded:2025>), the necessary Python environment is packaged with the application, allowing it to run without requiring a separate Python installation.
 
-For text generation Ollama is used with OllamaSharp, a second Nuget package that provides ready-to -use functions to interact with the local Ollama API.
-The text generation still takes significant time, but the streaming functionality supported by OllamaSharp improves user experience.
+For text generation Ollama is used with OllamaSharp #cite(<OllamaSharp:2025>), a second Nuget package that provides ready-to -use functions to interact with the local Ollama API.
+The text generation still takes significant time, but the streaming functionality supported by OllamaSharp #cite(<OllamaSharp:2025>) improves user experience.
 As soon as a token is generated, it is sent to the client, allowing the user to see the response being formed in real-time.
 
 #figure(
     image("../figures/OllamaSharp.svg"),
     caption: flex-caption(
-        [Chatbot with OllamaSharp and Python.Included in C\#],
-        [Chatbot with OllamaSharp and Python.Included in C\#],
+        [Chatbot with OllamaSharp #cite(<OllamaSharp:2025>) and Python.Included #cite(<PythonIncluded:2025>) in C\#],
+        [Chatbot with OllamaSharp #cite(<OllamaSharp:2025>) and Python.Included #cite(<PythonIncluded:2025>) in C\#],
     )
   )<fig:OllamaSharpChat>
 

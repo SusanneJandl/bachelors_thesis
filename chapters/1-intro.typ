@@ -25,7 +25,7 @@ And they all use Ollama, a tool that allows running, and managing AI models loca
 This thesis describes, compares, and evaluates the results of three different implementations, focusing on response time, response quality, and memory usage.
 
 The first implementation, a low code approach, uses Langflow with Python and Ollama.
-The next one uses C\# with OllamaSharp, a nuget package that supports Ollama for text generation.
+The next one uses C\# with OllamaSharp #cite(<OllamaSharp:2025>), a nuget package that supports Ollama for text generation.
 The final implementation uses a FlaskAPI for the logic, and a C\# application for the user interface.
 
 The aim of this thesis is to to find out what is necessary for running a chatbot locally with hardware restrictions, and to determine which factors have the most significant impact on the performance of local AI chatbots and how they can be optimized for efficient offline use.

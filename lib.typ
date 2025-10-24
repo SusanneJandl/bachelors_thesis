@@ -36,7 +36,7 @@ long }
 }
 
 // inspired by: https://github.com/typst/typst/issues/344
-#let fhjcode(code: "", language: "python", firstline: 0, lastline: -1, textsize: 11pt) = {
+#let fhjcode(code: "", language: "python", firstline: 0, lastline: -1, textsize: 9pt) = {
   // Custom layout for raw code
   // with line numbering
   show raw.where(block: true, lang: "trimmed_code"): it => {
@@ -59,7 +59,7 @@ long }
         raw(lines.join("\n"), lang: language),
       )
   }
-  set text(size: 11pt)
+  set text(size: 9pt)
 
   // we use here INTERNAL lang parameter "trimmed_python"
   // which supports trimming (see: show  raw.where(...) )

@@ -16,7 +16,7 @@
   title: "Optimizing Performance of Local AI Applications",
   subtitle: "Enhancing Offline Functionality Based on Hardware Constraints",
   supervisor: "Ing. DI Patrick Deininger BSc MSc", author: "Susanne Jandl",
-  submission-date: "September 2025",
+  submission-date: "December 2025",
   abstract-ge: [
     #include "abstract_de.typ" 
   ], abstract-en: [

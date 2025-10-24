@@ -1,13 +1,13 @@
 #import "global.typ": *
 
-#heading("Appendix", numbering: none)
+#heading("Appendix")
 
-#lorem(55)
-
-#todo(
-  [ Normally, an appendix is not necessary.
-  But, if you have (longer) parts of text
-  which should not appear within the body of the thesis text,
-  put them into the appendix
-  (and add references to important parts if necessary). ],
-)
+== #titles.langflowoutput <appendix-langflowoutput>
+ #figure(
+    align(
+      left, fhjcode(code: read("../code/langflow-context.json"), firstline: 1, lastline: 130),
+    ), caption: flex-caption(
+      [Adding the Chat Widget to an HTML Page.],
+      [Adding the Chat Widget to an HTML Page.],
+    ),
+  ) <lst:LangflowContext>

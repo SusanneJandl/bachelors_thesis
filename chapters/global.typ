@@ -91,6 +91,7 @@
   imploverview: "Overview",
   evaluation: "Evaluation",
   conclusion: "Conclusion and Outlook",
+  langflowoutput: "Langflow Output"
 )
 
 //

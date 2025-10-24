@@ -127,17 +127,13 @@ As Ollama uses models in GGUF format, the process used for quantization is the s
 
 Hugging Face is a widely-used open-source platform that provides tools and infrastructure for developing, training, and deploying machine learning models.
 At its core, the platform offers a powerful Python library called transformers, which allows researchers and developers to access and apply state-of-the-art pre-trained models.
-
 The platform also serves as a comprehensive ecosystem for machine learning development.
 The Hugging Face Model Hub enables users to browse, download, and share pre-trained models across various domains.
 This collaborative model-sharing system facilitates reproducibility and accelerates experimentation, particularly in academic research and prototyping.
 In addition to models, Hugging Face provides access to thousands of datasets for model-training.
-
 For deployment and experimentation, Hugging Face offers hosted APIs and an online demo environment called Hugging Face Spaces.
 Spaces supports building and showcasing machine learning applications using various frameworks.
-
 Overall, Hugging Face significantly lowers the barrier to entry for working with advanced machine learning models by providing modular, well-documented, and community-driven tools.
-
 #cite(<Huggingface:2025>)
 
 For this thesis Hugging Face was used to download models and retrieve knowledge in general.
@@ -147,14 +143,10 @@ For this thesis Hugging Face was used to download models and retrieve knowledge 
 Ollama is a command-line tool and runtime environment designed to simplify and optimize the deployment and execution of large language models (LLMs) on local machines.
 It enables users to run state-of-the-art models without relying on external APIs or cloud infrastructure.
 Ollama allows seamless access to generative AI with minimal setup, making it especially useful in environments that require privacy, offline access, or resource control.
-
 The platform provides an interface for interacting with LLMs via terminal commands or through local APIs.
 Ollama abstracts away the complexity of managing model architectures, tokenizers, and backend hardware compatibility, allowing users to focus on experimentation and application design.
-
 One of the core strengths of Ollama lies in its ability to work efficiently on consumer-grade hardware.
-It leverages techniques such as quantization and optimized inference backends to reduce memory and compute requirements, enabling models to run on laptops and edge devices.
-
-#cite(<Ollama:2025>)
+It leverages techniques such as quantization and optimized inference backends to reduce memory and compute requirements, enabling models to run on laptops and edge devices. #cite(<Ollama:2025>)
 
 For all chatbot approaches in this thesis Ollama is used for text generation.
 
@@ -163,7 +155,5 @@ For all chatbot approaches in this thesis Ollama is used for text generation.
 Langflow is a graphical interface tool and provides a no-code or low-code interface.
 It is a front-end wrapper for the LangChain framework, which is a Python-based toolkit for building AI aplications.
 Users can connect components such as prompt templates, document retrievers, vector databases and more through the intuitive drag-and-drop interface.
-Alongside to various cloud platforms like OpenAI, Langflow supports Ollama as one of the LLM providers, that 
-enables offline use.
-
-#cite(<Langflow:2025>)
+Alongside to various cloud platforms like OpenAI, Langflow supports Ollama as one of the LLM providers, that enables offline use.
+#cite(<Langflow:2025>) 
