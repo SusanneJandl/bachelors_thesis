@@ -1,35 +1,41 @@
-Nowadays a lot of websites provide a chatbot function for customer support.
-It is easy to create a custom chatbot using online APIs like OpenAI API or Huggingface inference API, which are paid services.
-However, there might be situations where a chatbot or assistant should run locally.
-The most common reason is that the data should not leave the local network, for example when dealing with sensitive information.
-For that case AI models can run on local hardware, but the hardware has to be powerful enough.
+Nowadays a lot of websites provide a customized chatbot to answer customer questions.
+With the help of online APIs like OpenAI API or Huggingface inference API creating a chatbot is a simple task.
+In addition there is no use to worry about hardware limits or scaling.
+However, there might be situations where a chatbot should run locally.
+The most common reason is that the data should not leave the local network, when dealing with sensitive information.
+For that case AI models can run on local hardware, that provides enough memory and powerful CPUs.
 #linebreak()
 But what if there are limitations in hardware resources and customers should still be provided with the benefits of a chatbot on a local device?
 This is where the project of this bachelor's thesis starts:
 #linebreak()
 #linebreak()
-For a software that runs locally without internet access a chatbot had to be created.
+At work the author was tasked with creating a chatbot running on a local device that is not connected to the internet.
 The hardware had limited resources and the chatbot had to be designed in a way that it can run under these circumstances.
 #linebreak()
-The target device is a Windows PC with only 8 GB of RAM and of course the chatbot has to share hardware resources with other applications and the operating system.
-An additional challenge is that the chatbot has to be able to answer in English, as well as in German.
+The target device was a Windows PC with only 8 GB of RAM and the chatbot had to share hardware resources with other applications and the operating system.
+An additional challenge was that the chatbot had to be able to answer in English, as well as in German.
 #linebreak()
-To achieve this goal, multiple approaches were tested.
-The first idea to fine-tune a pretrained large language model (LLM) with the necessary information for the chatbot, did not work well.
-After a series of experiments using RAG (retrieval-augmented generation) where the product specific information for the chatbot is stored in a vector store, a working solution was found.
-All chatbot approaches use Ollama, which is a tool that manages Large Language Models.
-The final implementation worked, but did not meet the expectations users would have when using a chatbot.
-The response time was too long, and the quality of the answers was not satisfactory.
-For the developer, it was still a success to make the chatbot work at all.
+Based on this chatbot project this thesis explores the behaviour of different chatbot versions on varying devices.
+As a result of the author's initial task the programming languages C\# and Python are used.
+All chatbot approaches use Ollama, which is a tool that manages and runs Large Language Models and provides a local API.
+The first chatbot versions tests Langflow, a Python tool that offers the possibility to create chatbots and other AI tools without code.
+The next chatbot version focuses on mainly using C\# for coding.
+This version uses Python.Included that makes it possible to use Python packages in C\# code and OllamaSharp to interact with the local Ollama API.
+A third chatbot version consists of a Flask API that interacts with Ollama and C\# WPF application for the user interface.
+The difference to the other versions is, that there is a separate translation model for German input and output.
 #linebreak()
-The different chatbot approaches were tested and compared with focus on response time and quality of content and language of the answers.
+The chatbot versions are tested and compared with focus on response time as well as response quality and content.
+The memory usage (RAM) is tracked as well.
 #linebreak()
-To sum it up, the result was a chatbot that could answer questions, but the answers were not always correct, especially the German language quality was not good, and the response time was too long.
+Finally the chatbot can be used, but the response time takes up to two minutes.
+The main part of the questions can be answered correctly.
+The language quality in English is very good, but the German language quality varies in a wide range form perfect to barely understandable.
 #linebreak()
-The chatbot was tested on a Windows laptop with 32GB of RAM as well.
-On this machine, the chatbot worked well, even when using a larger LLM to achieve better response quality.
+The chatbot was tested on a Windows laptop with 32GB of RAM as well as on Windows devices with 8 and 4 GB of RAM.
+The thesis includes a detailed comparison and summary of the test results of all chatbot versions on each device.
 #linebreak()
-The latest approach to retrieve a usable result for the target device is an AI application that uses AI for translation and retrieval.
-The provided information for the chatbot is a json file with English questions and predefined answers in German and English.
-The question with the highest similarity to the user input is retrieved from the json file and the corresponding answer is returned.
-This will only be discussed as alternative solution because no ongoing conversation is possible, which is a key feature of a chatbot.
+In the end an alternative approach is introduced.
+It is an AI application, based on a json file including possible questions with predefined answers.
+Depending on a user question, the best matching question is found with help of AI and the answer is returned in the according language.
+This alternative version is not a chatbot, because it can not generate text and it is not possible to have a conversation with it.
+With a well prepared collection of questions and answers this alternative can serve the purpose of customer support and can be executed with limited hardware ressources.

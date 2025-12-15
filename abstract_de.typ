@@ -1,18 +1,19 @@
-Viele Websites bieten heutzutage Chatbot-Funktionen zur Unterstützung der Kunden an.  
-Mit kostenpflichtigen Online-APIs wie der OpenAI API oder der Huggingface Inference API ist es einfach, einen individuellen Chatbot zu erstellen.
-Es kann jedoch Situationen geben, in denen ein Chatbot oder Assistent lokal ausgeführt werden soll.
-Der häufigste Grund dafür ist, dass die Daten das lokale Netzwerk nicht verlassen dürfen - zum Beispiel beim Umgang mit sensiblen Informationen.
-Für diesen Fall können KI-Modelle auf lokaler Hardware ausgeführt werden, jedoch muss die Hardware leistungsfähig genug sein, um die Modelle auszuführen.
+Viele Websites bieten heutzutage eigene Chatbots zur Beantwortung von Kundenfragen.  
+Mit der Hilfe von Online-APIs wie der OpenAI API oder der Huggingface Inference API ist es einfach, einen individuellen Chatbot zu erstellen.
+Ausserdem ist es somit nicht notwendig sich mit Hardware Limits oder Skalierung auseinanderzusetzen.
+Es kann jedoch Situationen geben, in denen ein Chatbot lokal ausgeführt werden soll.
+Der häufigste Grund dafür ist, dass die Daten das lokale Netzwerk nicht verlassen sollen, wenn sensible Informationen verarbeitet werden.
+Für diesen Fall können KI-Modelle auf lokaler Hardware ausgeführt werden, die über ausreichend Speicherplatz und leistungsstarke CPUs verfügt.
 #linebreak()
 Doch wie kann Kunden bei begrenzten Hardware-Ressourcen dennoch der Nutzen eines Chatbots auf einem lokalen Gerät geboten werden?
 An diesem Punkt setzt das Projekt dieser Bachelorarbeit an:
 #linebreak()
 #linebreak()
-Für eine Software, die lokal ohne Internetverbindung läuft, musste ein Chatbot entwickelt werden.  
+Die Autorin wurde in Ihrem Ausbildungsbetrieb damit beauftragt, einen Chatbot zu erstellen, der lokal ausgeführt wird und nicht mit dem Internet verbunden ist. 
 Die Hardware hatte begrenzten Ressourcen, und der Chatbot musste so gestaltet werden, dass er unter den gegebenen Bedingungen funktioniert.  
 #linebreak()  
-Das Zielgerät ist ein Windows-PC mit nur 8 GB RAM und der Chatbot muss die Hardware-Ressourcen natürlich mit anderen Anwendungen und dem Betriebssystem teilen.
-Eine weitere Herausforderung besteht darin, dass der Chatbot sowohl auf Englisch als auch auf Deutsch antworten muss.
+Das Zielgerät war ein Windows-PC mit nur 8 GB RAM und der Chatbot muss die Hardware-Ressourcen mit anderen Anwendungen und dem Betriebssystem teilen.
+Eine weitere Herausforderung bestand darin, dass der Chatbot sowohl auf Englisch als auch auf Deutsch antworten sollte.
 #linebreak()  
 Um das Ziel zu erreichen, wurden mehrere Ansätze getestet.  
 Die erste Idee, ein vortrainiertes Large Language Model (LLM) mit den erforderlichen Informationen für den Chatbot zu fine-tunen, brachte kein akzeptables Ergebnis.  
