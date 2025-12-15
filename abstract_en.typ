@@ -27,9 +27,9 @@ The difference to the other versions is, that there is a separate translation mo
 The chatbot versions are tested and compared with focus on response time as well as response quality and content.
 The memory usage (RAM) is tracked as well.
 #linebreak()
-Finally the chatbot can be used, but the response time takes up to two minutes.
-The main part of the questions can be answered correctly.
-The language quality in English is very good, but the German language quality varies in a wide range form perfect to barely understandable.
+Finally all chatbot versions run on all test devices, but the response time takes up to two minutes.
+Most questions are answered correctly.
+The language quality in English is very good, while the German language quality varies in a wide range form perfect to barely understandable.
 #linebreak()
 The chatbot was tested on a Windows laptop with 32GB of RAM as well as on Windows devices with 8 and 4 GB of RAM.
 The thesis includes a detailed comparison and summary of the test results of all chatbot versions on each device.
@@ -38,4 +38,5 @@ In the end an alternative approach is introduced.
 It is an AI application, based on a json file including possible questions with predefined answers.
 Depending on a user question, the best matching question is found with help of AI and the answer is returned in the according language.
 This alternative version is not a chatbot, because it can not generate text and it is not possible to have a conversation with it.
-With a well prepared collection of questions and answers this alternative can serve the purpose of customer support and can be executed with limited hardware ressources.
+With a well prepared collection of questions and answers this alternative can serve the purpose of customer support and can be executed with limited hardware resources.
+The respons time is just a few seconds, because the most resource intensive step of text generation is not necessary.

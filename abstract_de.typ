@@ -15,22 +15,30 @@ Die Hardware hatte begrenzten Ressourcen, und der Chatbot musste so gestaltet we
 Das Zielgerät war ein Windows-PC mit nur 8 GB RAM und der Chatbot muss die Hardware-Ressourcen mit anderen Anwendungen und dem Betriebssystem teilen.
 Eine weitere Herausforderung bestand darin, dass der Chatbot sowohl auf Englisch als auch auf Deutsch antworten sollte.
 #linebreak()  
-Um das Ziel zu erreichen, wurden mehrere Ansätze getestet.  
-Die erste Idee, ein vortrainiertes Large Language Model (LLM) mit den erforderlichen Informationen für den Chatbot zu fine-tunen, brachte kein akzeptables Ergebnis.  
-Nach einer Reihe von Experimenten mit RAG (Retrieval-Augmented Generation), bei dem die produktspezifischen Informationen für den Chatbot in einem Vektor-Store gespeichert werden, wurde eine funktionierende Lösung gefunden.
-Alle Chatbot-Ansätze verwenden Ollama, ein Tool zur Verwaltung von Large Language Models.
-Die finale Implementierung funktionierte, erfüllte jedoch nicht die Erwartungen der Nutzer an einen Chatbot.  
-Die Antwortzeit war zu lang, und die Qualität der Antworten war nicht zufriedenstellend.
-Für die Entwicklerin war es dennoch ein Erfolg, den Chatbot zum Laufen zu bringen.
+Basierend auf diesem Chatbot Projekt, erforscht diese Bachelorarbeit das Verhalten von unterschiedlichen Chatbot Versionen auf verschiedenen Geräten.
+Die verwendeten Programmiersprachen sind Python und C\#, da das eine Anforderung des ursprünglichen Chatbot Projekts war.
+Für alle Herangehensweisen wird Ollama, ein Tool, das Sprachmodelle verwaltet und über eine lokale API ausführt und zur Verfügung stellt, verwendet.
+Die erste Chatbot Version testet Langflow, ein Python Tool, das es ermöglicht, Chatbots und andere KI Anwendungen ohne Code zu erstellen.
+Die nächste Chatbot Version konzentriet sich darauf, hauptsächlich C\# als Programmiersprache zu verwenden.
+In dieser Version wird Python.Included verwendet, was es ermöglicht, Python Packages in C\# Code zu verwenden.
+Außerdem wird OllamaSharp genutzt um mit der lokalen Ollama API zu interagieren.
+Die dritte Chatbot Version besteht aus einer Flask API, die mit Ollama interagiert und einer C\# WPF Applikation als Benutzeroberfläche.
+Ein Unterschied zu den anderen Versionen ist, dass ein separates Sprachmodell für die Übersetzung für deutsche Ein- und Ausgaben enthalten ist.
 #linebreak()  
-Die verschiedenen Chatbot-Ansätze wurden getestet und verglichen, wobei der Fokus auf der Antwortzeit sowie der Qualität des Inhalts und der Sprache der Antworten lag.  
+Die verschiedenen Chatbot-Ansätze werden getestet und verglichen, wobei der Fokus auf der Antwortzeit sowie der Qualität des Inhalts und der Sprache der Antworten liegt.
+Zusätzlich wird die Speichernutzung (RAM) gemessen.
 #linebreak()  
-Zusammenfassend lässt sich sagen, dass das Ergebnis ein Chatbot war, der Fragen beantworten konnte, aber die Antworten nicht immer korrekt waren, die Qualität der Sprache war nicht zufriedenstellend und die Antwortzeit zu lang.
+Alle Chatbot Versionen können auf allen Testgeräten ausgeführt werden.
+Allerdings beträgt die Antwortzeit bis zu zwei Minuten.
+Die meisten Fragen werden inhaltlich korrekt beantwortet.
+Die Sprachqualität auf Englisch ist sehr gut, während die deutsche Sprachqualität von perfekt bis kaum verständlich variiert.
 #linebreak()  
-Der Chatbot wurde auch auf einem Windows-Laptop mit 32 GB RAM getestet.
-Auf diesem Gerät funktionierte der Chatbot gut, selbst bei Verwendung eines größeren LLM, um eine bessere Antwortqualität zu erzielen.
+Der Chatbot wurde auch auf einem Windows-Laptop mit 32 GB RAM und auf Windows-PCs mit 8 und 4 GB RAM getestet.
+Dies Arbeit enthält einen detaillierten Vergleich und eine detaillierte Zusammenfassung der Testergebnisse aller Chatbot Versionen auf allen Geräten.
 #linebreak()
-Der aktuellste Ansatz, auch auf dem ursprünglichen Zielgerät ein brauchbares Ergebnis zu erhalten, ist eine KI Anwendung, die KI für die Übersetzung und Retrieval verwendet.
-Dem Chatbot liegen Informationen in Form einer JSON-Datei mit englischen Fragen und vordefinierten Antworten in Deutsch und Englisch vor.
-Die Frage mit der höchsten Ähnlichkeit zur Benutzereingabe wird aus der JSON-Datei abgerufen und die entsprechende Antwort zurückgegeben.
-Das wird nur als alternative Lösung vorgestellt, da keine fortlaufende Konversation möglich ist, was ein zentrales Merkmal eines Chatbots ist.
+Zum Schluss wird ein alternativer Ansatz vorgestell.
+Dabei handelt es sich um eine KI Applikation, die eine json-Datei mit möglichen Fragen und vordefinierten Antworten enthält.
+Mit Hilfe von KI wird die ähnlichste Frage zur Nutzereingabe gefunden und die vordefinierte Antwort wird in der entsprechenden Sprache ausgegeben.
+Diese alternative Version ist allerdings kein Chatbot, da kein Text generiert wird und es nicht möglich ist, eine Konversation zu führen.
+Mit einer gut vorbereiteten Sammlung von Fragen und Antworten, kann diese Alternative den Zweck des Kunden-Supports erfüllen und mit geringen Hardware-Ressourcen ausgeführt werden.
+Die Antwortzeit beträgt nur wenige Sekunden, da der ressourcenintensivste Schritt, der Textgenerierung entfällt.
