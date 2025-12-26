@@ -5,12 +5,12 @@
 = #titles.background <cha:background>
 // define and explain terms, add glossary
 This chapter provides a theoretical foundation for understanding the technologies and approaches applied in this thesis.
-It starts with a brief introduction to the key concepts and technologies used and provides information about tools, models and libraries used in the project.
+It starts with a brief introduction to the key concepts and technologies used, and provides information about tools, models, and libraries included in the project.
 
 == #titles.rag <sec:rag>
 
 Necessary components for a RAG system are a vector store, an embedding model, and a Large Language Model (LLM) for text generation.
-The vector store contains the additional information the LLM needs to generate answers for a specific topic in form of vectors.
+The vector store contains the specific information the LLM needs to generate answers in form of vectors.
 The embedding model is used to convert data like text, or images into vectors and back.
 The search engine of the vector store finds relevant information.
 The LLM retrieves the matching information from the vector store together with the user query and generates an answer based on the provided information.
@@ -19,7 +19,7 @@ The LLM retrieves the matching information from the vector store together with t
 #figure(
       image("../figures/RAG.svg"),
     caption: flex-caption(
-        [General overview of a RAG system with only text based information],
+        [General overview of a RAG system with text based information],
         [General overview of a RAG system with text based information],
     )
   )<fig:RAG>
@@ -48,9 +48,6 @@ It is not necessary to fine-tune the text generation model for the specific topi
 
 A combination of using a fine-tuned model with RAG can improve the results even further but will decrease the flexibility of the system.
 When using a text generation model without specific fine-tuning on the topic, it is easy to replace the vector store and use the same system for different topics or update information.
-
-Due to the huge amount of available AI models for text generation, it can be very tricky to find the one that fits best for the specific purpose.
-In _@subsec:textgen #titles.textgen _ the models used in this thesis are introduced.
 
 RAG presents two main advantages over fine-tuning a pre-trained model.
 Fine-tuning requires a labeled dataset, which can be expensive to build, and a fine-tuned model is prone to outdated knowledge.
@@ -105,9 +102,21 @@ As this thesis focuses on hardware limitations, the size is a critical factor in
   ),
 ) <tab:thesismodels>
 
+llama3.2:3b is a multilingual text generation model, including German and English.
+3.2 stands for the model version, and 3b for the number of training parmeters.
+The training parameters directly affect the model size and quality.
+The 3b version is a trade-off between necessary hardware resources and answer quality for this work.
+The additional llama3.2:3b models with different quantization levels, such as q5 and q8, are added to show the effect of quantization.
+
+In this work different approaches for embedding are used.
+There is an own python script, and the use of Ollama.
+Therefore two different embedding models are included in this work.
+
+Given the small size, the translation models are very effective.
+
 == #titles.finetuning <sec:finetuning>
 
-Fine-tuning is the process of taking a pre-trained AI model—typically trained on a large, general-purpose dataset—and continuing its training on a smaller, task-specific dataset.
+Fine-tuning is the process of taking a pre-trained AI model, typically trained on a large, general-purpose dataset, and continuing its training on a smaller, task-specific dataset.
 Unlike training from scratch, fine-tuning starts from a model that already understands broad patterns (e.g., language structure or visual features).
 This second training phase allows the model to adjust its language understanding and generation capabilities to better suit specific topics.
 The fine-tuning process requires a huge data set and considerable computational resources.
@@ -120,8 +129,10 @@ Quantization is an important process because reducing the number of bits require
 Consequently, quantization produces LLMs that consume less memory, require less storage space, are more energy-efficient, and are faster. #cite(<Talamadupla:2024>).
 
 In this thesis the effect of qunatization will be evaluated by using Ollama with the same models with different qunatization.
-#cite(<Talamadupla:2024>, form:"prose") explains different types of qunatization.
-As Ollama uses models in GGUF format, the process used for quantization is the so called k-quant system.
+As #cite(<Talamadupla:2024>, form:"prose") explains, there are a different types of qunatization.
+This thesis focuses on using AI model with Ollama.
+Due to the fact, that Ollama uses GGUF format for the models, the relevant quantization process for this thesis is the so called k-quant system.
+Anyway the quantization process itself is not part of this work.
 
 == #titles.huggingface <sec:huggingface>
 

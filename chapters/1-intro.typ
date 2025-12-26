@@ -6,64 +6,67 @@
 //describe problem, relevance of problem, what has to be improved, background, prerequisites for work, terms and definitions
 
 The increasing demand for artificial intelligence (AI) in various applications, is a challenge that software developers have to deal with.
-Many AI driven systems use online platforms that provide the necessary computational resources accessible in form of an API.
-However, in scenarios where no internet connection is available, or where data privacy is a concern, the AI driven system has to be able to run locally on the device.
+Many AI driven systems use online platforms that provide the necessary computational resources accessible as an API.
+However, in scenarios when no internet connection is available, or data privacy is a concern, the AI driven system has to run locally on the device.
 
 Depending on the hardware it can be challenging to run AI applications locally.
-Large Language Models (LLMs) require significant resources, and their effectiveness is often tied to the availability of high-performance computing resources.
-However, some practical use cases demand AI solutions that function reliably on consumer-grade hardware with minimal resources.
+Large Language Models (LLMs) require significant resources, and their effectiveness is tied to the availability of high-performance computing hardware.
+Some practical use cases demand AI solutions that function reliably on consumer-grade hardware with minimal resources.
 
 The idea for this thesis was born, when the author was tasked with developing a chatbot that should run locally on a Windows PC without an internet connection and only 8 GB of RAM.
-The chatbot must support English and German.
-It's task is to provide information that comes from a user manual.
-This means that there is no huge amount of data the chatbot has to process, but it still needs to be able to understand and answer questions in both languages.
+The chatbot should answer customers questions about how to use a specific software.
+This software already occupied most of the available memory.
+In addition the chatbot should support English and German.
+The necessary specific knowledge for the chatbot was the content of a user manual about the software
 The data should be replaceable for updating information, or for using the chatbot for other topics.
 
-To reach this goal, different approaches were implemented.
-All of them use Retrieval Augmented Generation (RAG) to retrieve information from a local vector store.
+To reach this goal, different chatbot versions were implemented.
+All of them use Retrieval Augmented Generation (RAG) to retrieve information from a local vector store, where the specific information is stored.
 And they all use Ollama, a tool that allows running, and managing AI models locally with integrated resource management.
-This thesis describes, compares, and evaluates the results of three different implementations, focusing on response time, response quality, and memory usage.
-
+This thesis describes, compares, and evaluates the results of three different implementations on, focusing on response time, response quality, and memory usage.
+The chatbot is tested on three different test devices, such as a Windows laptop with 32 GB, and Windows PCs with 4 and 8 GB of RAM.
 The first implementation, a low code approach, uses Langflow with Python and Ollama.
-The next one uses C\# with OllamaSharp #cite(<OllamaSharp:2025>), a nuget package that supports Ollama for text generation.
-The final implementation uses a FlaskAPI for the logic, and a C\# application for the user interface.
+The next one uses C\# with OllamaSharp #cite(<OllamaSharp:2025>), a nuget package that supports Ollama for text generation and Python.Included to allow the use of Python packages in C\# code.
+The third implementation uses a FlaskAPI for the logic, and a C\# application for the user interface.
+In addition this thesis includes an alternative solution, that also uses AI but is not able to generate text and have a ongoing conversation.
 
 The aim of this thesis is to to find out what is necessary for running a chatbot locally with hardware restrictions, and to determine which factors have the most significant impact on the performance of local AI chatbots and how they can be optimized for efficient offline use.
 
 Despite the growing number of AI models, little research has been conducted on model fine-tuning and training for this thesis.
-Instead it compares, and evaluates existing pre-trained models and their performance in the different approaches of the chatbot project.
-A closer look on model quantization and its impact on performance is taken.
+Instead it compares, and evaluates existing pre-trained models and their performance in the different chatbot versions.
+A closer look on the impact of model quantization on the performance is taken.
 For this purpose, different quantization levels of the same model are used.
 
 == #titles.problem <sec:problem>
 // examples for problem, compare to existing solutions, why a better solution is needed
 
-Developing an offline chatbot that can be used on a Windows PC with only 8 GB of RAM presents several challenges.
+Developing an offline chatbot that can be used with hardware restrictions presents several challenges.
 Large Language Models (LLMs) require significant computational resources, which are often beyond the capabilities of consumer-grade devices.
 While smaller, optimized models can operate under these constraints, they frequently produce lower-quality responses, particularly in terms of coherence, grammar, and factual accuracy.
-Running the chatbot in German adds another level of complexity, as many of the best-performing models are primarily optimized for English, making direct German language generation less reliable.  
+Running the chatbot in German adds another level of complexity, as many of the best-performing models are optimized for English.
 
 The first idea of fine-tuning a model and use it for the chatbot was quickly dismissed.
 Fine-tuning requires substantial computational power and long training times, as well as a large amount of training data.
-Compared to Retrieval Augmented Generation (RAG), which provides a more flexible alternative by retrieving domain-specific knowledge from a local vector store, fine-tuning is less practical for this project.
-However, ensuring efficient retrieval and response generation remains a challenge.
-To further improve accuracy, a translation model was introduced in the final chatbot implementation, allowing responses to be generated in English for better language quality before being translated into German.
+Compared to Retrieval Augmented Generation (RAG), which provides a more flexible alternative by retrieving specific knowledge from a local vector store, fine-tuning is less practical for this project.
+The remaining challenge is to ensure efficient retrieval and response generation.
+To improve accuracy, and add flexibility, a translation model was introduced in one of the chatbot versions.
+Responses are generated in English for better language quality before being translated to German.
 
-The famous strategy "Divide and Conquer" (Julius Cäsar) provides an apt analogy for the FlaskAPI approach taken in this project.
+The famous strategy "Divide and Conquer" (Julius Cäsar) provides an analogy for the FlaskAPI approach taken in this project.
 The chatbot's architecture distributes tasks among three specialized models: an embedding model for retrieval (RAG), a lightweight LLM for response generation, and a translation model for language adaptation.
 This modular approach optimizes efficiency while maintaining language quality, making it possible to run the chatbot on limited hardware.  
 
 Compared to cloud-based solutions, an offline chatbot must carefully balance efficiency, accuracy, and speed while operating under hardware constraints.
 Without proper optimization, local AI models risk being too slow or generating unreliable responses, limiting their practical usability.
-This thesis investigates different offline AI approaches and explores strategies for improving performance in a multilingual chatbot.
+This thesis investigates different offline chatbot approaches and explores strategies for improving performance for a multilingual chatbot.
 
 == #titles.researchq <sec:researchq>
 
 *"Which factors have the most significant impact on the performance of local AI chatbots, and how can they be optimized for efficient offline use?"*
 
-By answering the research question above, the thesis will point out the key factors that influence the performance of local AI chatbots and propose optimization strategies to enhance their efficiency for offline use.
+By answering the research question above, the thesis will point out the key factors that influence the performance of local AI chatbots and introduce optimization strategies to enhance their efficiency for offline use.
 #linebreak()
-An important factor that will be considered in the thesis are how different AI models and quantization levels affect the performance.
+An important factor that will be considered in the thesis is how different AI models and quantization levels affect the performance.
 An other interesting aspect is how the choice of programming language and framework influences the performance of the chatbot, when using the same AI models with Ollama.
 This leads to the following hypotheses.
 
@@ -92,23 +95,23 @@ The project consists of multiple approaches to be compared and evaluated.
 Scientific literature is reviewed to identify the state of the art in the field of offline AI applications and their performance optimization.
 To provide practical insights into the topic, the theoretical findings are compared to the project results.
 
-To incorporate project-based data, tests with measurable results are defined and carried out.
+To retrieve project-based data, tests with measurable results are defined and carried out.
 The results are analyzed as part of the thesis and supported by theoretical findings from literature research, ensuring a well-rounded and reliable evaluation.
 
 The most important results of the performed tests are the response time, and the accuracy and quality of the chatbot's responses.
-Tests are done on devices with different hardware specifications, such as a Windows PC with 8 GB of RAM, and a Windows PC with 32 GB of RAM.
+Tests are done on devices with different hardware specifications, such as a Windows PCs with 8 and 4 GB of RAM, and a Windows PC with 32 GB of RAM.
 
 == #titles.scope <sec:scope>
 
 The scope of this thesis is limited to optimizing the performance of local AI applications by integrating and evaluating existing AI models.
 No new AI models are created or trained from scratch.
-Given the vast number of pre-trained models available, which continue to improve and expand daily, developing a custom model would be neither practical nor competitive.
+Given the huge number of pre-trained models available and their continuous improvement, developing a custom model would be neither practical nor competitive.
 Without extensive experience in AI model training and appropriate hardware, it is highly unlikely that any self-trained model would achieve results comparable to those of established ones.
 Instead, the focus remains on selecting pre-trained models, and providing an implementation that allows them to run efficiently on consumer-grade hardware.
-Similarly, while quantization is a key factor in model optimization, this thesis does not include performing quantization itself.
+Similarly, while quantization is a key factor in model optimization, this thesis does not include the process of quantization itself.
 Instead, it examines how different pre-quantized versions of the same model affect performance under various hardware constraints.
-The aim is to analyze and compare existing models with different quantization rather than modifying or re-quantizing models directly.
-By maintaining this focus, the thesis ensures a practical and achievable approach to enhancing offline AI applications while leveraging the strengths of available technology.
+The aim is to analyze and compare existing models with different quantization rather than modifying models directly.
+By keeping this focus, the thesis ensures a practical and achievable approach to enhancing offline AI applications while leveraging the strengths of available technology.
 
 == #titles.structure <sec:structure>
  @cha:background (#ref(<cha:background>, form:"page") ff) includes background information on the key concepts and technologies used in the thesis, such as Large Language Models (LLMs) and Retrieval Augmented Generation (RAG) and gives basic information about tools and libraries used in the project.
